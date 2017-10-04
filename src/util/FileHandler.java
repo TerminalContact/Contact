@@ -5,6 +5,7 @@ import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +48,7 @@ public class FileHandler {
         //Add append parameter in order to build the contacts list, at this point it will erase the previous entry with each new run.
             List<String> fileInfo= new ArrayList<>();
             fileInfo.add(input);
-            Files.write(Paths.get(getDirectory(),getFilename()),fileInfo);
+            Files.write(Paths.get(getDirectory(),getFilename()),fileInfo, StandardOpenOption.APPEND);
 
         }
         //Retrieves the items on the text file and writes them to the terminal.
