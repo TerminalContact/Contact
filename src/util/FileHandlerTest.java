@@ -11,7 +11,9 @@ public class FileHandlerTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        newFile.writeFileInfo();
+        System.out.println("Please enter an item to add to the list.");
+        Input input=new Input();
+        newFile.writeFileInfo("String");
         newFile.readFileInfo();
     }
 

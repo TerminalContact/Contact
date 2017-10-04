@@ -29,7 +29,7 @@ public class Input {
         }
     }
     public int getInt() {
-        System.out.println("Please enter an integer.");
+//        System.out.println("Please enter an integer.");
         try{
             return Integer.valueOf(getString());
         }

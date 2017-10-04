@@ -42,13 +42,11 @@ public class FileHandler {
     //Method will write items to the file specified.
 
     //Items are already set, will add ability to change based on user input later.
-        public void writeFileInfo() throws IOException {
+
+        public void writeFileInfo(String input) throws IOException {
+        //Add append parameter in order to build the contacts list, at this point it will erase the previous entry with each new run.
             List<String> fileInfo= new ArrayList<>();
-            fileInfo.add("Cheese");
-            fileInfo.add("Bread");
-            fileInfo.add("Turkey");
-            fileInfo.add("Pickle");
-            fileInfo.add("Ham");
+            fileInfo.add(input);
             Files.write(Paths.get(getDirectory(),getFilename()),fileInfo);
 
         }
