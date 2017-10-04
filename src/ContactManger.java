@@ -39,8 +39,14 @@ public class ContactManger {
         String finalContact=contacts.getName()+","+contacts.getNumber();
         contactPath.writeFileInfo(finalContact);
         System.out.println("Thank you!");
+        System.out.println("");
         //After the user inputs the name, and number the program will run again using printMenu();
         printMenu(contactPath);
+    }
+    public static void viewContacts(FileHandler contactPath) throws IOException {
+        contactPath.readFileInfo();
+        printMenu(contactPath);
+
     }
 
     public static void printMenu(FileHandler contactPath) throws IOException {
@@ -61,7 +67,7 @@ public class ContactManger {
         switch (input.getInt()){
             case 1:
                 System.out.println("1");
-//                viewContacts();
+                viewContacts(contactPath);
                 break;
 
             case 2:

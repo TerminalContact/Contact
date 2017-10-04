@@ -55,7 +55,8 @@ public class FileHandler {
         List<String> retrievedFileInfo=Files.readAllLines(Paths.get(getDirectory(),getFilename()));
             for(String info:retrievedFileInfo) {
                 String[] part = info.split(",");
-                System.out.println(part[0]);
+                System.out.println(part[0]+": "+part[1]);
+                System.out.println("");
             }
 
         }
