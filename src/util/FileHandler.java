@@ -49,6 +49,19 @@ public class FileHandler {
             List<String> fileInfo= new ArrayList<>();
             fileInfo.add(input);
             Files.write(Paths.get(getDirectory(),getFilename()),fileInfo, StandardOpenOption.APPEND);
+        }
+
+        public void replaceInfo(String name) throws IOException {
+            List<String> oldList=Files.readAllLines(Paths.get(getDirectory(),getFilename()));
+            List<String> newList= new ArrayList<>();
+
+        for(String oldListItem: oldList) {
+            if(oldListItem.toLowerCase().startsWith(name.toLowerCase())) {
+                continue;
+            }
+            newList.add(oldListItem);
+        }
+            Files.write(Paths.get(getDirectory(),getFilename()),newList);
 
         }
         //Retrieves the items on the text file and writes them to the terminal.
