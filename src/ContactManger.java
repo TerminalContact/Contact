@@ -26,6 +26,7 @@ public class ContactManger {
 
 
 
+
     }
 
     // addContact will pass the user inputs into variable Strings name, and number.
@@ -33,9 +34,10 @@ public class ContactManger {
     public static void addContact(Input input, FileHandler contactPath) throws IOException {
         System.out.println("Please enter a name");
         String name = input.getString();
+        Contacts contacts = new Contacts(name);
         System.out.println("Please enter a number");
-        String number = input.getString();
-        Contacts contacts = new Contacts(name,number);
+        String number=input.getString();
+        contacts.addNumber(number);
         String finalContact=contacts.getName()+","+contacts.getNumber();
         contactPath.writeFileInfo(finalContact);
         System.out.println("Thank you!");
@@ -46,7 +48,14 @@ public class ContactManger {
     public static void viewContacts(FileHandler contactPath) throws IOException {
         contactPath.readFileInfo();
         printMenu(contactPath);
-
+    }
+    public static void searchByName(FileHandler contactPath) throws IOException {
+        System.out.println("Please enter a name");
+        Input input=new Input();
+        String name=input.getString();
+        Contacts contacts =new Contacts(name);
+        contacts.searchContactInfo(name,contactPath);
+        printMenu(contactPath);
     }
 
     public static void printMenu(FileHandler contactPath) throws IOException {
@@ -77,7 +86,7 @@ public class ContactManger {
 
             case 3:
                 System.out.println("3");
-//                searchByName();
+                searchByName(contactPath);
                 break;
 
             case 4:
