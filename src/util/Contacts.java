@@ -44,11 +44,24 @@ public class Contacts {
             String[] part=contactName.split(",");
             //Created private string and set the value equal to the array at index 0, which has the value of the name.
             this.searchedName=part[0];
+            System.out.println("The length of the number is:"+part[1].length());
             //In this if statement returns a boolean value if our searched name starts with the input string provided by the user.
             if(this.searchedName.toLowerCase().startsWith(name.toLowerCase())){
                 //Saves that current value of the name and phone number to the array at the given indexes.
-                this.searchedName=part[0];
-                this.searchedNumber=part[1];
+                if(part[1].length()==7){
+//                    this.searchedNumber=part[1];
+                    String number=part[1].substring(0,3)+"-"+ part[1].substring(3);
+                    this.searchedNumber=number;
+                }
+                else if(part[1].length()==10){
+                    this.searchedNumber=part[1];
+                    String number=part[1].substring(0,3)+"-"+part[1].substring(3,6)+"-"+part[1].substring(6);
+                    System.out.println(name);
+                    this.searchedNumber=number;
+                }
+                else{
+                    this.searchedNumber=part[1];
+                }
                 break;
             }
         }

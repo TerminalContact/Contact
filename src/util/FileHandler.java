@@ -15,6 +15,8 @@ public class FileHandler {
 
     private String directory;
     private String filename;
+    private String searchedNumber;
+    private String searchedName;
 
     public FileHandler(String directory, String filename){
         this.directory=directory;
@@ -69,9 +71,20 @@ public class FileHandler {
         List<String> retrievedFileInfo=Files.readAllLines(Paths.get(getDirectory(),getFilename()));
             for(String info:retrievedFileInfo) {
                 String[] part = info.split(",");
-                System.out.println(part[0]+": "+part[1]);
+                this.searchedName=part[0];
+            if(part[1].length()==7){
+                String number=part[1].substring(0,3)+"-"+ part[1].substring(3);
+                this.searchedNumber=number;
+            }
+            else if(part[1].length()==10){
+                this.searchedNumber=part[1];
+                String number=part[1].substring(0,3)+"-"+part[1].substring(3,6)+"-"+part[1].substring(6);
+                this.searchedNumber=number;
+            }
+                System.out.println(this.searchedName+": "+this.searchedNumber);
                 System.out.println("");
             }
+
 
         }
 
