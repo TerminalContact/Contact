@@ -37,6 +37,7 @@ public class Contacts {
 //        return "";
 //
 //    }
+
     public void searchContactInfo(String name, FileHandler filePath) throws IOException {
         List<String> retrievedFileInfo = Files.readAllLines(Paths.get(filePath.getDirectory(), filePath.getFilename()));
         for (String contactName:retrievedFileInfo){
@@ -55,4 +56,24 @@ public class Contacts {
         System.out.println(this.searchedName+": "+this.searchedNumber);
         System.out.println("");
     }
+//    public void deleteContact(String name, FileHandler filePath) throws IOException {
+//        List<String> retrievedFileInfo = Files.readAllLines(Paths.get(filePath.getDirectory(), filePath.getFilename()));
+//        for (String contactName:retrievedFileInfo){
+//            String[] part=contactName.split(",");
+//            //Created private string and set the value equal to the array at index 0, which has the value of the name.
+//            this.searchedName=part[0];
+//            this.searchedNumber=part[1];
+//
+//            //In this if statement returns a boolean value if our searched name starts with the input string provided by the user.
+//            if(this.searchedName.toLowerCase().startsWith(name.toLowerCase())){
+//                //Saves that current value of the name and phone number to the array at the given indexes.
+//                this.searchedName.replaceAll(part[0],"");
+//                this.searchedNumber.(part[1],"");
+//                break;
+//            }
+//        }
+        //Prints out the phone number for the user of the given name searched.
+//        System.out.println("Contact has been deleted");
+//        System.out.println("");
+//    }
 }

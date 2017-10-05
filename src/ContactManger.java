@@ -57,6 +57,13 @@ public class ContactManger {
         contacts.searchContactInfo(name,contactPath);
         printMenu(contactPath);
     }
+    public static void deleteExisting(FileHandler contactPath) throws IOException{
+        System.out.println("Please enter a name");
+        Input input=new Input();
+        String name=input.getString();
+        contactPath.replaceInfo(name);
+        printMenu(contactPath);
+    }
 
     public static void printMenu(FileHandler contactPath) throws IOException {
         //Starts the application, and will continue to run at the end of each switch case until the user exits by pressing "5".
@@ -91,7 +98,7 @@ public class ContactManger {
 
             case 4:
                 System.out.println("4");
-//                deleteExisting();
+                deleteExisting(contactPath);
                 break;
 
             case 5:
