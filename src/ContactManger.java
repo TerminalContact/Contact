@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ContactManger {
     public static void main(String[] args) throws IOException {
-        FileHandler contactPath=new FileHandler("contactData","contacts.txt");
+        FileHandler contactPath = new FileHandler("contactData", "contacts.txt");
         try {
             contactPath.setFilePath();
         } catch (IOException e) {
@@ -19,12 +19,6 @@ public class ContactManger {
 
         //Print Menu will initialize the application.
         printMenu(contactPath);
-
-
-
-
-
-
 
 
     }
@@ -36,33 +30,64 @@ public class ContactManger {
         String name = input.getString();
         Contacts contacts = new Contacts(name);
         System.out.println("Please enter a number");
-        String number=input.getString();
-        contacts.addNumber(number);
-        String finalContact=contacts.getName()+","+contacts.getNumber();
-        contactPath.writeFileInfo(finalContact);
-        System.out.println("Thank you!");
-        System.out.println("");
-        //After the user inputs the name, and number the program will run again using printMenu();
-        printMenu(contactPath);
+        String number = input.getString();
+        if (isNumber(number)) {
+            if (number.length() != 7 && number.length() != 10) {
+                System.out.println("That is not a valid input.");
+                addContact(input, contactPath);
+            }
+            else {
+                contacts.addNumber(number);
+                String finalContact = contacts.getName() + "," + contacts.getNumber();
+                contactPath.writeFileInfo(finalContact);
+                System.out.println("Thank you!");
+                System.out.println("");
+
+                //After the user inputs the name, and number the program will run again using printMenu();
+                printMenu(contactPath);
+            }
+        }
+        else {
+                System.out.println("That is not a valid input.");
+                addContact(input, contactPath);
+            }
+
     }
+
+    public static boolean isNumber(String number) {
+        try {
+            Integer.parseInt(number);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static void viewContacts(FileHandler contactPath) throws IOException {
         contactPath.readFileInfo();
         printMenu(contactPath);
     }
+
     public static void searchByName(FileHandler contactPath) throws IOException {
         System.out.println("Please enter a name");
-        Input input=new Input();
-        String name=input.getString();
-        Contacts contacts =new Contacts(name);
-        contacts.searchContactInfo(name,contactPath);
+        Input input = new Input();
+        String name = input.getString();
+        Contacts contacts = new Contacts(name);
+        contacts.searchContactInfo(name, contactPath);
         printMenu(contactPath);
     }
-    public static void deleteExisting(FileHandler contactPath) throws IOException{
+
+    public static void deleteExisting(FileHandler contactPath) throws IOException {
         System.out.println("Please enter a name");
-        Input input=new Input();
-        String name=input.getString();
-        contactPath.replaceInfo(name);
-        printMenu(contactPath);
+        Input input = new Input();
+        String name = input.getString();
+        System.out.println("Are you sure you want to delete this contact?");
+        if (input.yesNo()) {
+            contactPath.replaceInfo(name);
+            printMenu(contactPath);
+        } else {
+            printMenu(contactPath);
+        }
     }
 
     public static void printMenu(FileHandler contactPath) throws IOException {
@@ -77,33 +102,32 @@ public class ContactManger {
 
     }
 
+    public static void exitContact() {
+        System.exit(0);
+    }
+
     //Handles the functions that the user will enter and starts the given function based on the users entry.
     public static void Menu(FileHandler contactPath) throws IOException {
-        Input input=new Input();
-        switch (input.getInt()){
+        Input input = new Input();
+        switch (input.getInt()) {
             case 1:
-                System.out.println("1");
                 viewContacts(contactPath);
                 break;
 
             case 2:
-                System.out.println("2");
-                addContact(input,contactPath);
+                addContact(input, contactPath);
                 break;
 
             case 3:
-                System.out.println("3");
                 searchByName(contactPath);
                 break;
 
             case 4:
-                System.out.println("4");
                 deleteExisting(contactPath);
                 break;
 
             case 5:
-                System.out.println("5");
-//                exitContact();
+                exitContact();
                 break;
         }
 
