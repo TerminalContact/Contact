@@ -69,20 +69,30 @@ public class FileHandler {
         //Retrieves the items on the text file and writes them to the terminal.
         public void readFileInfo() throws IOException{
         List<String> retrievedFileInfo=Files.readAllLines(Paths.get(getDirectory(),getFilename()));
+            System.out.println("");
+            System.out.printf("%-11s %-1s %-12s %-4s\n", "Name", "|", "Phone number","|");
+            for(int i=0; i<28;i++){
+                System.out.print("-");
+            }
+            System.out.println("");
             for(String info:retrievedFileInfo) {
                 String[] part = info.split(",");
                 this.searchedName=part[0];
             if(part[1].length()==7){
                 String number=part[1].substring(0,3)+"-"+ part[1].substring(3);
                 this.searchedNumber=number;
+                this.searchedName=part[0].substring(0,1).toUpperCase()+part[0].substring(1);
+                System.out.printf("%-11s %-1s %-12s %-4s\n", this.searchedName, "|", this.searchedNumber,"|");
+
             }
             else if(part[1].length()==10){
                 this.searchedNumber=part[1];
                 String number=part[1].substring(0,3)+"-"+part[1].substring(3,6)+"-"+part[1].substring(6);
                 this.searchedNumber=number;
+                this.searchedName=part[0].substring(0,1).toUpperCase()+part[0].substring(1);
+                System.out.printf("%-11s %-1s %-12s %-4s\n", this.searchedName, "|", this.searchedNumber,"|");
             }
-                System.out.println(this.searchedName+": "+this.searchedNumber);
-                System.out.println("");
+//                System.out.println("");
             }
 
 

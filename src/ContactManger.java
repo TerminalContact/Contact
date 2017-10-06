@@ -31,6 +31,7 @@ public class ContactManger {
         Contacts contacts = new Contacts(name);
         System.out.println("Please enter a number");
         String number = input.getString();
+
         if (isNumber(number)) {
             if (number.length() != 7 && number.length() != 10) {
                 System.out.println("That is not a valid input.");
@@ -65,6 +66,7 @@ public class ContactManger {
 
     public static void viewContacts(FileHandler contactPath) throws IOException {
         contactPath.readFileInfo();
+        System.out.println("");
         printMenu(contactPath);
     }
 
@@ -74,6 +76,7 @@ public class ContactManger {
         String name = input.getString();
         Contacts contacts = new Contacts(name);
         contacts.searchContactInfo(name, contactPath);
+        System.out.println("");
         printMenu(contactPath);
     }
 
@@ -84,8 +87,10 @@ public class ContactManger {
         System.out.println("Are you sure you want to delete this contact?");
         if (input.yesNo()) {
             contactPath.replaceInfo(name);
+            System.out.println("");
             printMenu(contactPath);
         } else {
+            System.out.println("");
             printMenu(contactPath);
         }
     }
